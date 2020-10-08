@@ -1,0 +1,19 @@
+name: Lucy Test Bot notifications
+
+on:
+  push:
+  pull_request:
+    types: [opened, closed]
+  issues:
+    types: [opened, closed, reopened]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: LucyTestBOT
+        uses: kkvanonymous/Lucy_Test_Bot@master
+        if: always()
+        with:
+          chat: ${{ secrets.CHAT_ID }}
+          token: ${{ secrets.BOT_TOKEN }}
