@@ -2,10 +2,10 @@ name: 'LucyTestBOT'
 description: 'Connect your GitHub Repo to Telegram'
 author: 'kkvanonymous'
 inputs: 
-  CHAT_ID:
+  chat:
     description: 'Chat to send: chat id or @channel_name'
     required: true
-  BOT_TOKEN:
+  token:
     description: 'Telegram Bot token'
     required: true
   iu_title: 
