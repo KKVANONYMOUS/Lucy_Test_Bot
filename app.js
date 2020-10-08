@@ -2,7 +2,7 @@ require('dotenv').config()
 const { Telegraf } = require('telegraf')
 const bot = new Telegraf(process.env.BOT_TOKEN)
 
-bot.start(ctx=>ctx.reply("ldbfghcdgV"))
+bot.start(ctx=>ctx.reply("Lucy test bot online..."))
 
 const evresp = (gevent) => {
     switch (gevent) {
@@ -14,8 +14,12 @@ Commented or Created By : \`${process.env.INPUT_IU_ACTOR}\`
 Issue Body : *${process.env.INPUT_IU_BODY}*
 [Link to Issue](https://github.com/${process.env.GITHUB_REPOSITORY}/issues/${process.env.INPUT_IU_NUM})
 [Link to Repo ](https://github.com/${process.env.GITHUB_REPOSITORY}/)`
+
+        default:
+            return `
+            Repository:${process.env.GITHUB_REPOSITORY}`
     }
 }
 const output = evresp(process.env.GITHUB_EVENT_NAME)
-bot.telegram.sendMessage(process.env.CHAT_ID,output,{parse_mode : "Markdown"})
+bot.telegram.sendMessage(process.env.MY_ID,output,{parse_mode : "Markdown"})
 bot.launch()
