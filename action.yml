@@ -1,0 +1,28 @@
+name: 'LucyTestBOT'
+description: 'Connect your GitHub Repo to Telegram'
+author: 'kkvanonymous'
+inputs: 
+  CHAT_ID:
+    description: 'Chat to send: chat id or @channel_name'
+    required: true
+  BOT_TOKEN:
+    description: 'Telegram Bot token'
+    required: true
+  iu_title: 
+    description: 'Issue Title'
+    default: ${{ github.event.issue.title }}
+  iu_num:
+    description: 'Issue Number'
+    default: ${{ github.event.issue.number }}
+  iu_actor: 
+    description: 'Issue Triggerer'
+    default: ${{ github.event.issue.user.login }}
+  iu_body:
+    description: 'Issue Body'
+    default: ${{ github.event.issue.body }}
+runs:
+  using: "node12"
+  main: "app.ts"
+branding:
+  icon: 'repeat'  
+  color: 'green'
