@@ -22,7 +22,7 @@ inputs:
     default: ${{ github.event.issue.body }}
 runs:
   using: "node12"
-  main: "app.ts"
+  main: "app.js"
 branding:
   icon: 'repeat'  
   color: 'green'

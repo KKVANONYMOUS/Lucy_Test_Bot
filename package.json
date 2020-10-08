@@ -1,0 +1,23 @@
+{
+  "name": "lucy_test_bot",
+  "version": "1.0.0",
+  "description": "Test Bot for COPS Telegram Bot\r 1)Repo used for testing",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KKVANONYMOUS/Lucy_Test_Bot.git"
+  },
+  "author": "kkvanonymous",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KKVANONYMOUS/Lucy_Test_Bot/issues"
+  },
+  "homepage": "https://github.com/KKVANONYMOUS/Lucy_Test_Bot#readme",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "telegraf": "^3.38.0"
+  }
+}
