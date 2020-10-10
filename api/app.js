@@ -1,25 +1,37 @@
-require('dotenv').config()
-const { Telegraf } = require('telegraf')
-const bot = new Telegraf(process.env.BOT_TOKEN)
+const { Octokit } = require('@octokit/rest');
+const {Telegraf} = require('telegraf')
+
+const PROD_ENV = process.env.NODE_ENV === 'production';
+
+if (!PROD_ENV) {
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    require('dotenv').config();
+}
+const bot = new Telegraf(process.env.BOT_TOKEN || '')
 
 bot.start(ctx=>ctx.reply("Lucy test bot online..."))
 
-// const evresp = (gevent) => {
-//     switch (gevent) {
+bot.command('DevTalks', async ctx => {
+    const octokit = new  Octokit();
+    const { data } = await octokit.issues.listForRepo({
+      owner: 'COPS-IITBHU',
+      repo: 'DevTalks',
+    });
+  
+    if (data.length == 0) {
+      ctx.reply('No upcoming dev talks.');
+    }
+  
+    const msgList = data.map(
+      (element) => `[${element.title}](${element.html_url}) by [${element.user.login}](${element.user.html_url})`,
+    );
+  
+    ctx.telegram.sendMessage(ctx.chat.id,msgList.join('\n\n'),{
+        parse_mode:'Markdown'
+    })
+});
 
-//         case "issues":
-//             return `
-// Issue Title and Number  : ${process.env.INPUT_IU_TITLE} | #${process.env.INPUT_IU_NUM}
-// Commented or Created By : \`${process.env.INPUT_IU_ACTOR}\`
-// Issue Body : *${process.env.INPUT_IU_BODY}*
-// [Link to Issue](https://github.com/${process.env.GITHUB_REPOSITORY}/issues/${process.env.INPUT_IU_NUM})
-// [Link to Repo ](https://github.com/${process.env.GITHUB_REPOSITORY}/)`
+if (!PROD_ENV) {
+    bot.launch();
+  }
 
-//         default:
-//             return `
-//             Repository:${process.env.GITHUB_REPOSITORY}`
-//     }
-// }
-// const output = evresp(process.env.GITHUB_EVENT_NAME)
-// bot.telegram.sendMessage(process.env.MY_ID,output,{parse_mode : "Markdown"})
-bot.launch()
