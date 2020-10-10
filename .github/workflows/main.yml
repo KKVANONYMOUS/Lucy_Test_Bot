@@ -19,3 +19,5 @@ jobs:
           token: ${{ secrets.BOT_TOKEN }}
       - name: Install packages
         run: npm install
+      - name: Run build
+        run: npm run build:linux
