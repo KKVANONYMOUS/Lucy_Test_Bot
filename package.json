@@ -4,7 +4,8 @@
   "description": "Test Bot for COPS Telegram Bot\r 1)Repo used for testing",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node api/app.js",
+    "start": "node api/app.js"
   },
   "repository": {
     "type": "git",
