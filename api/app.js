@@ -81,6 +81,7 @@ Tag:        ${process.env.GITHUB_REF}
 }
 // assigning the output to a variable
 const output = evresp(ghevent)
+console.log(output)
 bot.telegram.sendMessage(chatid,output,{parse_mode : "Markdown"})
 
 bot.start(ctx=>ctx.reply("Lucy test bot online..."))
