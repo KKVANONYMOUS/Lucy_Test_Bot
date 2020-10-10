@@ -8,6 +8,9 @@ inputs:
   token:
     description: 'Telegram Bot token'
     required: true
+  status:
+    description: 'Job status'
+    required: true
   iu_title: 
     description: 'Issue Title'
     default: ${{ github.event.issue.title }}
@@ -17,9 +20,21 @@ inputs:
   iu_actor: 
     description: 'Issue Triggerer'
     default: ${{ github.event.issue.user.login }}
-  iu_body:
-    description: 'Issue Body'
-    default: ${{ github.event.issue.body }}
+  iu_com:
+    description: 'Issue Comment'
+    default: ${{github.event.comment.body}}
+  pr_state:
+    description: 'State of the PR'
+    default: ${{ github.event.action }}
+  pr_num:
+    description: 'PR Number'
+    default: ${{ github.event.number }}
+  pr_title:
+    description: 'Title of the PR'
+    default: ${{ github.event.pull_request.title }}
+  pr_body:
+    description: 'Body/Contents of the PR'
+    default: ${{ github.event.pull_request.body }}
 runs:
   using: "node12"
   main: "api/app.js"
