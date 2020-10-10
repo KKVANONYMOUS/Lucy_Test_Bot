@@ -108,3 +108,8 @@ bot.command('DevTalks', async ctx => {
 
 bot.launch();
 
+module.exports = (req,resp) => {
+  if (req.method === 'POST') bot.handleUpdate(req.body, resp);
+  else resp.status(200).send('Use POST to use Telegram bot!');
+};
+
