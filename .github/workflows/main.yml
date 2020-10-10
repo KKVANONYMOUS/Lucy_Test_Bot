@@ -11,6 +11,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      uses: kkvanonymous/Lucy_Test_Bot@master
+        if: always()
+        with:
+          chat: ${{ secrets.CHAT_ID }}
+          token: ${{ secrets.BOT_TOKEN }}
       - name: Set Node.js version ${{ matrix.node_version }}
         uses: actions/setup-node@v1
         with:
@@ -18,8 +23,4 @@ jobs:
       - run: npm ci
       - run: npm run build --if-present
       - run: npm test
-        uses: kkvanonymous/Lucy_Test_Bot@master
-        if: always()
-        with:
-          chat: ${{ secrets.CHAT_ID }}
-          token: ${{ secrets.BOT_TOKEN }}
+        
