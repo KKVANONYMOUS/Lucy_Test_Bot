@@ -15,11 +15,9 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node_version }}
-      - name: Install packages
-        run: npm install
-      - name: Run build
-        run: npm run build:linux
-      - name: LucyTestBOT
+      - run: npm ci
+      - run: npm run build --if-present
+      - run: npm test
         uses: kkvanonymous/Lucy_Test_Bot@master
         if: always()
         with:
