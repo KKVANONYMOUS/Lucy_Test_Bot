@@ -17,3 +17,5 @@ jobs:
         with:
           chat: ${{ secrets.CHAT_ID }}
           token: ${{ secrets.BOT_TOKEN }}
+      - name: Install packages
+        run: npm install

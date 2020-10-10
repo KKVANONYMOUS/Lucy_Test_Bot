@@ -1,5 +1,5 @@
-const { Octokit } = require('@octokit/rest');
 const {Telegraf} = require('telegraf')
+const { Octokit } = require('@octokit/rest');
 
 const PROD_ENV = process.env.NODE_ENV === 'production';
 
