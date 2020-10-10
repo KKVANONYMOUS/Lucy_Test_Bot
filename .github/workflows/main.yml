@@ -11,7 +11,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      uses: kkvanonymous/Lucy_Test_Bot@master
+      - name: LucyTestBot
+        uses: kkvanonymous/Lucy_Test_Bot@master
         if: always()
         with:
           chat: ${{ secrets.CHAT_ID }}
