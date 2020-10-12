@@ -1,7 +1,6 @@
 require('dotenv').config();
 const {Telegraf} = require('telegraf')
 const { Octokit } = require('@octokit/rest'); 
-const {context} = require('@actions/github')
 
 const {
   INPUT_STATUS: ipstatus, 
@@ -39,7 +38,7 @@ Commented or Created By : \`${iactor}\`
 
 Issue Body : *${ibody}*
 
-[Link to Issue](https://github.com/${repo12.owner}/issues/${inum})
+[Link to Issue](https://github.com/${repo}/issues/${inum})
 [Link to Repo ](https://github.com/${repo}/)
 [Build log here](https://github.com/${repo}/commit/${sha}/checks)`
 // Switch statement for Pull Requests
@@ -76,15 +75,15 @@ By:            *${ghactor}*
 
 Tag:        ${process.env.GITHUB_REF}
 
-[Link to Repo ](https://github.com/${repo12.owner}/${repo12.repo}/)
+[Link to Repo ](https://github.com/${repo}/)
           `
   }
 }
-const { repo12 } = context;
+
 // assigning the output to a variable
 const output = evresp(ghevent)
 console.log(output)
-bot.telegram.sendMessage(chatid,output,{parse_mode : "Markdown"})
+bot.telegram.sendMessage(process.env.MY_ID,output,{parse_mode : "Markdown"})
 
 bot.start(ctx=>ctx.reply("Lucy test bot online..."))
 
@@ -103,7 +102,7 @@ bot.command('DevTalks', async ctx => {
       (element) => `[${element.title}](${element.html_url}) by [${element.user.login}](${element.user.html_url})`,
     );
   
-    ctx.telegram.sendMessage(ctx.chat.id,msgList.join('\n\n'),{
+    ctx.telegram.sendMessage(process.env.MY_ID,msgList.join('\n\n'),{
         parse_mode:'Markdown'
     })
 });
