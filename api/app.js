@@ -1,6 +1,7 @@
 require('dotenv').config();
 const {Telegraf} = require('telegraf')
-const { Octokit } = require('@octokit/rest');
+const { Octokit } = require('@octokit/rest'); 
+const {context} = require('@actions/github')
 
 const {
   INPUT_STATUS: ipstatus, 
@@ -38,7 +39,7 @@ Commented or Created By : \`${iactor}\`
 
 Issue Body : *${ibody}*
 
-[Link to Issue](https://github.com/${repo}/issues/${inum})
+[Link to Issue](https://github.com/${repo12.owner}/issues/${inum})
 [Link to Repo ](https://github.com/${repo}/)
 [Build log here](https://github.com/${repo}/commit/${sha}/checks)`
 // Switch statement for Pull Requests
@@ -75,10 +76,11 @@ By:            *${ghactor}*
 
 Tag:        ${process.env.GITHUB_REF}
 
-[Link to Repo ](https://github.com/${repo}/)
+[Link to Repo ](https://github.com/${repo12.owner}/${repo12.repo}/)
           `
   }
 }
+const { repo12 } = context;
 // assigning the output to a variable
 const output = evresp(ghevent)
 console.log(output)
@@ -112,4 +114,3 @@ module.exports = (req,resp) => {
   if (req.method === 'POST') bot.handleUpdate(req.body, resp);
   else resp.status(200).send('Use POST to use Telegram bot!');
 };
-
